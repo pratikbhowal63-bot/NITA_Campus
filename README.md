@@ -86,7 +86,7 @@ National Institute of Technology Agartala
 ## Screenshots
 
 ### Login Screen
-![Login Screen](screenshots/Login.png)
+![Login Screen](Downloads/Login.png)
 
 ### Home Screen
 ![Home Screen](screenshots/Main1.png)
