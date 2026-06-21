@@ -89,7 +89,7 @@ National Institute of Technology Agartala
 ![Login Screen](Downloads/Login.png)
 
 ### Home Screen
-![Home Screen](screenshots/Main1.png)
+![Home Screen](Downloads/Main1.png)
 ![Home Screen](screenshots/2ain2.png)
 
 ### Profile Screen
