@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.net.toUri
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
@@ -30,10 +31,7 @@ class MainActivity2 : AppCompatActivity() {
 
         setContentView(R.layout.activity_main2)
 
-        window.insetsController?.setSystemBarsAppearance(
-            0,
-            android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-        )
+        window.insetsController?.setSystemBarsAppearance( 0, android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -72,6 +70,16 @@ class MainActivity2 : AppCompatActivity() {
                     intent.putExtra("username", userId)
                     startActivity(intent)
                 }
+
+
+                    R.id.nav_dark_mode -> {
+
+                        AppCompatDelegate.setDefaultNightMode(
+                            AppCompatDelegate.MODE_NIGHT_YES
+                        )
+                        true
+                    }
+
 
                 R.id.admins -> {
                     startActivity(Intent(this, NextActivity::class.java))

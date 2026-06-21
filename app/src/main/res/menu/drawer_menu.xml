@@ -31,6 +31,11 @@
         android:icon="@drawable/outline_battery_android_frame_share_24"/>
 
     <item
+        android:id="@+id/nav_dark_mode"
+        android:title="Dark Mode"
+        android:icon="@drawable/dark_mode"/>
+
+    <item
         android:id="@+id/rate"
         android:title="Rate Us"
         android:icon="@drawable/baseline_person_24"/>

@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val registerButton = findViewById<Button>(R.id.signUpButton)
 
         registerButton.setOnClickListener {
