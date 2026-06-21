@@ -1,100 +1,151 @@
-<img src="Screenshots/banner.jpeg" width="470"/>
+<img src="Screenshots/banner.jpeg" width="90%"/>
 
-NITA Campus
+# 🎓 NITA Campus
 
-NITA Campus is an Android application developed for students of NIT Agartala. The app serves as a centralized platform where students can access academic resources, communicate with peers, explore department information, and use AI-powered assistance within a single application.
+NITA Campus is a modern Android application developed for students of **NIT Agartala**. The app serves as a centralized platform where students can access academic resources, explore department information, communicate with peers, and utilize AI-powered assistance—all within a single application.
 
-Features
+---
 
-Authentication
+## 🚀 Features
 
-* Secure Sign Up and Sign In using Firebase Authentication
-* User account management
+### 🔐 Authentication
+- Secure Sign Up and Sign In using Firebase Authentication
+- User account management
 
-Student Dashboard
+### 📊 Student Dashboard
+- Modern and intuitive user interface
+- Quick access to academic and campus resources
+- Easy navigation across modules
 
-* Modern and user-friendly interface
-* Quick access to academic and campus resources
+### 🤖 AI Assistant
+- Integrated AI-powered assistant
+- Helps students with academic and campus-related queries
 
-AI Assistant
+### 📚 Academic Resources
+- Subject-wise study materials
+- Notes and learning resources
+- Previous Year Questions (PYQs)
 
-* Integrated AI-powered assistant
-* Helps students with academic and campus-related queries
+### 🏛 Department Information
+- Computer Science & Engineering
+- Electronics & Communication Engineering
+- Electrical Engineering
+- Mechanical Engineering
+- Civil Engineering
+- Chemical Engineering
+- Production Engineering
+- Instrumentation Engineering
 
-Academic Resources
+### 🎯 Campus Information
+- Events and activities
+- Student clubs
+- Faculty information
+- Scholarship details
+- Campus facilities
 
-* Subject-wise materials
-* Notes and study resources
-* Previous Year Questions (PYQs)
+---
 
-Department Information
+## 🛠 Tech Stack
 
-* Computer Science & Engineering
-* Electronics & Communication Engineering
-* Electrical Engineering
-* Mechanical Engineering
-* Civil Engineering
-* Chemical Engineering
-* Production Engineering
-* Instrumentation Engineering
+- Kotlin
+- Android SDK
+- Firebase Authentication
+- Firebase Realtime Database
+- Gemini AI API
+- RecyclerView
+- View Binding
+- Material Design Components
 
-Campus Information
+---
 
-* Events
-* Clubs
-* Faculty details
-* Scholarship information
-* Campus facilities
+## 🏗 Project Structure
 
-Project Structure
+The application follows a modular Android architecture with separate components for:
 
-The application follows a modular Android architecture with separate activities for authentication, dashboard management, chat functionality, academic resources, department information, and AI-powered assistance.
+- Authentication
+- Dashboard Management
+- Academic Resources
+- Department Information
+- AI Assistant
+- User Profiles
+- Navigation Management
 
-Skills Demonstrated
+---
 
-* Android App Development
-* Kotlin Programming
-* Firebase Integration
-* Authentication Systems
-* Real-Time Database Management
-* API Integration
-* UI/UX Design
-* RecyclerView Implementation
-* Navigation Drawer Implementation
-* Problem Solving and Debugging
+## 💡 Skills Demonstrated
 
-Future Improvements
+- Android Application Development
+- Kotlin Programming
+- Firebase Integration
+- Authentication Systems
+- Real-Time Database Management
+- API Integration
+- UI/UX Design
+- RecyclerView Implementation
+- Navigation Drawer Implementation
+- Problem Solving & Debugging
 
-* Push Notifications
-* Dark Mode Support
-* Attendance Tracking
-* Timetable Management
-* Placement Preparation Module
-* Faculty-Student Communication Portal
-* Cloud Firestore Migration
-* Offline Support
-
-Author 
-
-Pratik Bhowal
-
-B.Tech, Computer Science & Engineering
-National Institute of Technology Agartala
+---
 
 ## 📸 Screenshots
 
-### Login
-<img src="Screenshots/Login.png" width="250"/>
+<p align="center">
+  <img src="Screenshots/Login.png" width="220"/>
+  <img src="Screenshots/Main.png" width="220"/>
+  <img src="Screenshots/main2.png" width="220"/>
+</p>
 
-### Dashboard
-<img src="Screenshots/Main.png" width="250"/>
-<img src="Screenshots/main2.png" width="250"/>
+<p align="center">
+  <img src="Screenshots/dashboard.png" width="220"/>
+  <img src="Screenshots/profile.png" width="220"/>
+  <img src="Screenshots/AI.png" width="220"/>
+</p>
 
-### Navigation Drawer
-<img src="Screenshots/dashboard.png" width="250"/>
+---
 
-### Profile
-<img src="Screenshots/profile.png" width="250"/>
+## 🔮 Future Improvements
 
-### AI Assistant
-<img src="Screenshots/AI.png" width="250"/>
+- Push Notifications (FCM)
+- Dark Mode Support
+- Attendance Tracking
+- Timetable Management
+- Placement Preparation Module
+- Faculty-Student Communication Portal
+- Cloud Firestore Migration
+- Offline Support
+- MVVM Architecture
+- Room Database Integration
+
+---
+
+## ⚙ Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/pratikbhowal63-bot/NITA_Campus.git
+```
+
+2. Open the project in Android Studio
+
+3. Add your own Firebase configuration file:
+
+```text
+app/google-services.json
+```
+
+4. Sync Gradle dependencies
+
+5. Build and run the application
+
+---
+
+## 👨‍💻 Author
+
+**Pratik Bhowal**  
+B.Tech, Computer Science & Engineering  
+National Institute of Technology Agartala
+
+---
+
+⭐ If you found this project useful, consider giving it a star.
