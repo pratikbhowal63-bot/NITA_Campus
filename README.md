@@ -86,7 +86,7 @@ National Institute of Technology Agartala
 ## Screenshots
 
 ### Login Screen
-![Login Screen](Downloads/Login.png)
+![Login Screen]([Downloads](https://github.com/pratikbhowal63-bot/NITA_Campus/blob/123ae4ed7424f24d6c114fcf3c536db95611f9e6/main2.png)
 
 ### Home Screen
 ![Home Screen](Downloads/Main1.png)
