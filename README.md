@@ -81,23 +81,24 @@ Pratik Bhowal
 B.Tech, Computer Science & Engineering
 National Institute of Technology Agartala
 
-# NITA Campus
-
-## Screenshots
+## 📸 Screenshots
 
 ### Login Screen
-![Login Screen](Screenshots/main2.png)
+
+![Login](screenshots/login.png)
 
 ### Home Screen
-![Home Screen](Downloads/Main1.png)
-![Home Screen](Screenshots/main2.png)
+
+![Home](screenshots/home.png)
 
 ### Profile Screen
-![Profile Screen](screenshots/profile.png)
+
+![Profile](screenshots/profile.png)
 
 ### NITA-AI Screen
-![Profile Screen](screenshots/AI.png)
+
+![AI Assistant](screenshots/ai_assistant.png)
 
 ### Dashboard Screen
-![Profile Screen](screenshots/dashboard.png)
 
+![Dashboard](screenshots/dashboard.png)
