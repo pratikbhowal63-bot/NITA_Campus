@@ -1,4 +1,4 @@
-![Banner](Screenshots/banner.jpeg)
+<img src="Screenshots/banner.jpeg" width="470"/>
 
 NITA Campus
 
@@ -86,9 +86,9 @@ National Institute of Technology Agartala
 ### Login
 <img src="Screenshots/Login.png" width="250"/>
 
-### Dashboard 
-<img src="Screenshots/Main" width="250"/>
-<img src="Screenshots/main2" width="250"/>
+### Dashboard
+<img src="Screenshots/Main.png" width="250"/>
+<img src="Screenshots/main2.png" width="250"/>
 
 ### Navigation Drawer
 <img src="Screenshots/dashboard.png" width="250"/>
