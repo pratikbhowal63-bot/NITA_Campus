@@ -1,5 +1,3 @@
-![Banner](screenshots/icon.png)
-
 NITA Campus
 
 NITA Campus is an Android application developed for students of NIT Agartala. The app serves as a centralized platform where students can access academic resources, communicate with peers, explore department information, and use AI-powered assistance within a single application.
