@@ -84,13 +84,13 @@ National Institute of Technology Agartala
 ## 📸 Screenshots
 
 ### Login
-<img src="screenshots/login.png" width="250"/>
+<img src="Screenshots/login.png" width="250"/>
 
 ### Dashboard
-<img src="screenshots/dashboard.png" width="250"/>
+<img src="Screenshots/dashboard.png" width="250"/>
 
 ### Profile
-<img src="screenshots/profile.png" width="250"/>
+<img src="Screenshots/profile.png" width="250"/>
 
 ### AI Assistant
-<img src="screenshots/ai_assistant.png" width="250"/>
+<img src="Screenshots/ai_assistant.png" width="250"/>
