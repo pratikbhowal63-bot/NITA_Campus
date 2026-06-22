@@ -15,7 +15,7 @@
         android:theme="@style/Theme.NITACampus"
         android:windowSoftInputMode="adjustResize">
         <activity
-            android:name=".SignIn"
+            android:name=".ui.auth.SignIn"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -25,79 +25,79 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.dashboard.MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SignUp"
+            android:name=".ui.auth.SignUp"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".ui.dashboard.MainActivity2"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".NextActivity"
+            android:name=".ui.dashboard.NextActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".CSEActivity"
+            android:name=".ui.department.CSEActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ECEActivity"
+            android:name=".ui.department.ECEActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".EEActivity"
+            android:name=".ui.department.EEActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".EIEActivity"
+            android:name=".ui.department.EIEActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MechanicalActivity"
+            android:name=".ui.department.MechanicalActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".CivilActivity"
+            android:name=".ui.department.CivilActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ChemicalActivity"
+            android:name=".ui.department.ChemicalActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ProductionActivity"
+            android:name=".ui.department.ProductionActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".BioActivity"
+            android:name=".ui.department.BioActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".PhysicsActivity"
+            android:name=".ui.department.PhysicsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ChemistryActivity"
+            android:name=".ui.department.ChemistryActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MathsActivity"
+            android:name=".ui.department.MathsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".FirstYearActivity"
+            android:name=".ui.department.FirstYearActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".AiAssistantActivity"
+            android:name=".ui.assistant.AiAssistantActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".profile"
+            android:name=".ui.profile.profile"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

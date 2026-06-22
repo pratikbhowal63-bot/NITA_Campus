@@ -7,7 +7,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2"
+    tools:context=".ui.dashboard.MainActivity2"
     >
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/image"
-        tools:context=".MainActivity2">
+        tools:context=".ui.dashboard.MainActivity2">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
