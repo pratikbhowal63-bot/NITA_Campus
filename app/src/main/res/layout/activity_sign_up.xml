@@ -121,12 +121,12 @@
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="  Enter Password"
                 app:boxBackgroundColor="#80FFFFFF"
                 app:boxStrokeColor="#FFFFFFFF"
                 app:boxCornerRadiusTopStart="20dp"
                 app:boxCornerRadiusTopEnd="20dp"
                 app:boxCornerRadiusBottomStart="20dp"
+                android:hint="  Enrollment Number"
                 app:boxCornerRadiusBottomEnd="20dp"
                 app:hintTextColor="@android:color/black"
                 app:passwordToggleEnabled="true"
@@ -134,7 +134,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:drawableStart="@drawable/baseline_security_24"
-                    android:id="@+id/etPassword"
+                    android:id = "@+id/etEnrollment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"

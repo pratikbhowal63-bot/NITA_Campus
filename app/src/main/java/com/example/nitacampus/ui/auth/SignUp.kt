@@ -24,7 +24,7 @@ class SignUp : AppCompatActivity() {
         val etName = findViewById<EditText>(R.id.etFullName)
         val etPhone = findViewById<EditText>(R.id.etPhone)
         val etUserName = findViewById<EditText>(R.id.etUserName)
-        val etPassword = findViewById<EditText>(R.id.etPassword)
+        val etEnrollment = findViewById<EditText>(R.id.etEnrollment)
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
@@ -78,13 +78,13 @@ class SignUp : AppCompatActivity() {
             val username =
                 etUserName.text.toString().trim()
 
-            val password =
-                etPassword.text.toString().trim()
+            val enrollment =
+                etEnrollment.text.toString().trim()
 
             if(name.isEmpty() ||
                 phone.isEmpty() ||
                 username.isEmpty() ||
-                password.isEmpty()) {
+                enrollment.isEmpty()) {
 
                 Toast.makeText(
                     this,
@@ -99,8 +99,7 @@ class SignUp : AppCompatActivity() {
                 name = name,
                 phone = phone,
                 username = username,
-                password = password
-
+                enrollmentNumber = enrollment
             )
 
             viewModel.registerUser(user)

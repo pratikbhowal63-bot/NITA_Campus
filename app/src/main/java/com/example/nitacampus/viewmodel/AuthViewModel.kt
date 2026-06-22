@@ -12,7 +12,8 @@ class AuthViewModel : ViewModel() {
 
     private val _authState = MutableLiveData<AuthState>()
 
-    val authState: LiveData<AuthState> get() = _authState
+    val authState: LiveData<AuthState>
+        get() = _authState
 
     fun registerUser(user: Users) {
 
@@ -36,27 +37,8 @@ class AuthViewModel : ViewModel() {
             }
         }
     }
-    fun login(
-        username: String,
-        password: String
-    ) {
 
-        _authState.value = AuthState.Loading
-
-        repository.login(username, password) { success, error ->
-
-            if (success) {
-
-                _authState.value =
-                    AuthState.Success(username)
-
-            } else {
-
-                _authState.value =
-                    AuthState.Error(
-                        error ?: "Unknown Error"
-                    )
-            }
-        }
+    fun updateLastLogin(username: String) {
+        repository.updateLastLogin(username)
     }
 }

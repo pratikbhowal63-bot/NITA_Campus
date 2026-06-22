@@ -14,8 +14,16 @@ class UserRepository {
         callback: (Boolean, String?) -> Unit
     ) {
 
-        user.username?.let { database.child(it) }?.get()
-            ?.addOnSuccessListener { snapshot ->
+        val username = user.username
+
+        if (username.isNullOrEmpty()) {
+            callback(false, "Username cannot be empty")
+            return
+        }
+
+        database.child(username)
+            .get()
+            .addOnSuccessListener { snapshot ->
 
                 if (snapshot.exists()) {
 
@@ -26,12 +34,14 @@ class UserRepository {
 
                 } else {
 
-                    database.child(user.username!!)
+                    database.child(username)
                         .setValue(user)
                         .addOnSuccessListener {
 
-                            callback(true, null)
-
+                            callback(
+                                true,
+                                null
+                            )
                         }
                         .addOnFailureListener {
 
@@ -42,7 +52,7 @@ class UserRepository {
                         }
                 }
             }
-            ?.addOnFailureListener {
+            .addOnFailureListener {
 
                 callback(
                     false,
@@ -55,58 +65,48 @@ class UserRepository {
         username: String,
         callback: (Users?, String?) -> Unit
     ) {
-        database.child(username).get()
+
+        database.child(username)
+            .get()
             .addOnSuccessListener { snapshot ->
+
                 if (snapshot.exists()) {
-                    val user = snapshot.getValue(Users::class.java)
-                    callback(user, null)
-                } else {
-                    callback(null, "User not found")
-                }
-            }
-            .addOnFailureListener {
-                callback(null, it.message)
-            }
-    }
 
-    fun login(
-        username: String,
-        password: String,
-        callback: (Boolean, String?) -> Unit
-    ) {
-
-        database.child(username).get()
-            .addOnSuccessListener { snapshot ->
-
-                if (!snapshot.exists()) {
+                    val user =
+                        snapshot.getValue(
+                            Users::class.java
+                        )
 
                     callback(
-                        false,
-                        "Username doesn't exist"
+                        user,
+                        null
                     )
-                    return@addOnSuccessListener
-                }
-
-                val user =
-                    snapshot.getValue(Users::class.java)
-
-                if (user?.password == password) {
-
-                    callback(true, null)
 
                 } else {
+
                     callback(
-                        false,
-                        "Incorrect password"
+                        null,
+                        "User not found"
                     )
                 }
             }
             .addOnFailureListener {
 
                 callback(
-                    false,
+                    null,
                     it.message
                 )
             }
+    }
+
+    fun updateLastLogin(
+        username: String
+    ) {
+
+        database.child(username)
+            .child("lastLogin")
+            .setValue(
+                System.currentTimeMillis()
+            )
     }
 }
