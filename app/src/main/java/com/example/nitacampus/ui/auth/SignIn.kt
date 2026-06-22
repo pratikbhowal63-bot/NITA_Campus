@@ -25,9 +25,48 @@ class SignIn : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_sign_in)
 
+        // Auto Login Check
+        val prefs = getSharedPreferences(
+            "NITA_PREFS",
+            MODE_PRIVATE
+        )
+
+        val isLoggedIn =
+            prefs.getBoolean(
+                "isLoggedIn",
+                false
+            )
+
+        if (isLoggedIn) {
+
+            val username =
+                prefs.getString(
+                    "username",
+                    ""
+                )
+
+            val intent =
+                Intent(
+                    this,
+                    MainActivity2::class.java
+                )
+
+            intent.putExtra(
+                "userId",
+                username
+            )
+
+            startActivity(intent)
+            finish()
+            return
+        }
+
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(
+            findViewById(R.id.main)
+        ) { v, insets ->
+
             val systemBars = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
             )
@@ -42,22 +81,31 @@ class SignIn : AppCompatActivity() {
             insets
         }
 
-        val signUp = findViewById<TextView>(R.id.tvSignUp)
-        val loginButton = findViewById<Button>(R.id.button3)
+        val signUp =
+            findViewById<TextView>(R.id.tvSignUp)
 
-        val emailEditText = findViewById<TextInputEditText>(R.id.etName)
+        val loginButton =
+            findViewById<Button>(R.id.button3)
 
-        val passwordEditText = findViewById<TextInputEditText>(R.id.etPassword)
+        val usernameEditText =
+            findViewById<TextInputEditText>(R.id.etName)
+
+        val passwordEditText =
+            findViewById<TextInputEditText>(R.id.etPassword)
 
         signUp.setOnClickListener {
+
             startActivity(
-                Intent(this, SignUp::class.java)
+                Intent(this,
+                    SignUp::class.java
+                )
             )
         }
 
         viewModel.authState.observe(this) { state ->
 
             when (state) {
+
                 is AuthState.Loading -> {
 
                     Toast.makeText(
@@ -69,10 +117,40 @@ class SignIn : AppCompatActivity() {
 
                 is AuthState.Success -> {
 
-                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
+                    val preferences =
+                        getSharedPreferences(
+                            "NITA_PREFS",
+                            MODE_PRIVATE
+                        )
 
-                    val intent = Intent(this, MainActivity2::class.java)
-                    intent.putExtra("userId", state.username)
+                    preferences.edit()
+                        .putBoolean(
+                            "isLoggedIn",
+                            true
+                        )
+                        .putString(
+                            "username",
+                            state.username
+                        )
+                        .apply()
+
+                    Toast.makeText(
+                        this,
+                        "Login Successful",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    val intent =
+                        Intent(
+                            this,
+                            MainActivity2::class.java
+                        )
+
+                    intent.putExtra(
+                        "userId",
+                        state.username
+                    )
+
                     startActivity(intent)
                     finish()
                 }
@@ -81,7 +159,7 @@ class SignIn : AppCompatActivity() {
 
                     Toast.makeText(
                         this,
-                        state.message,
+                        "Error: ${state.message}",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -90,24 +168,54 @@ class SignIn : AppCompatActivity() {
 
         loginButton.setOnClickListener {
 
-            val email =
-                emailEditText.text.toString().trim()
+            val username =
+                usernameEditText.text.toString().trim()
 
             val password =
                 passwordEditText.text.toString().trim()
 
-            if (email.isEmpty()) {
-                emailEditText.error = "Enter Email"
+            if (username.isEmpty()) {
+
+                usernameEditText.error =
+                    "Username is required"
+
+                usernameEditText.requestFocus()
+
+                return@setOnClickListener
+            }
+
+            if (username.length < 4) {
+
+                usernameEditText.error =
+                    "Username must be at least 4 characters"
+
+                usernameEditText.requestFocus()
+
                 return@setOnClickListener
             }
 
             if (password.isEmpty()) {
-                passwordEditText.error = "Enter Password"
+
+                passwordEditText.error =
+                    "Password is required"
+
+                passwordEditText.requestFocus()
+
+                return@setOnClickListener
+            }
+
+            if (password.length < 6) {
+
+                passwordEditText.error =
+                    "Password must be at least 6 characters"
+
+                passwordEditText.requestFocus()
+
                 return@setOnClickListener
             }
 
             viewModel.login(
-                email,
+                username,
                 password
             )
         }

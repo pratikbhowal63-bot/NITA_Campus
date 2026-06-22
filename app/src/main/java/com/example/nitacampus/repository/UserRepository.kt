@@ -15,17 +15,41 @@ class UserRepository {
                     callback(false, "Username already taken")
                 }
                 else {
-                    database.child(user.username!!)
+                    val username = user.username
+
+                    if (username.isNullOrEmpty()) {
+                        callback(false, "Invalid username")
+                        return@addOnSuccessListener
+                    }
+                    if (username.contains(" ")) {
+                        callback(false, "Username cannot contain spaces")
+                        return@addOnSuccessListener
+                    }
+
+                    if (username.length > 20) {
+                        callback(false, "Username too long")
+                        return@addOnSuccessListener
+                    }
+
+                    database.child(username)
                         .setValue(user)
+
                         .addOnSuccessListener {
                             callback(true, null)
                         }
                         .addOnFailureListener {
-                            callback(false, it.message) }
+                            callback(
+                                false,
+                                it.message ?: "Network error"
+                            )
+                        }
                 }
             }
             ?.addOnFailureListener {
-                callback(false, it.message)
+                callback(
+                    false,
+                    it.message ?: "Network error"
+                )
             }
     }
 
@@ -35,7 +59,6 @@ class UserRepository {
             .addOnSuccessListener { snapshot ->
 
                 if (!snapshot.exists()) {
-
                     callback(
                         false,
                         "Username doesn't exist"
@@ -43,8 +66,7 @@ class UserRepository {
                     return@addOnSuccessListener
                 }
 
-                val user =
-                    snapshot.getValue(Users::class.java)
+                val user = snapshot.getValue(Users::class.java)
 
                 if (user?.password == password) {
 
@@ -58,10 +80,9 @@ class UserRepository {
                 }
             }
             .addOnFailureListener {
-
                 callback(
                     false,
-                    it.message
+                    it.message ?: "Network error"
                 )
             }
     }
