@@ -1,32 +1,56 @@
-<img src="Screenshots/banner.jpeg" width="90%"/>
+<img src="Screenshots/banner.jpeg" width="100%"/>
 
 # 🎓 NITA Campus
 
-NITA Campus is a modern Android application developed for students of **NIT Agartala**. The app serves as a centralized platform where students can access academic resources, explore department information, communicate with peers, and utilize AI-powered assistance—all within a single application.
+![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
+![Android](https://img.shields.io/badge/Android-34A853?style=for-the-badge&logo=android&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+![MVVM](https://img.shields.io/badge/Architecture-MVVM-blue?style=for-the-badge)
+
+A modern Android application developed for students of **National Institute of Technology Agartala (NIT Agartala)**.
+
+NITA Campus serves as a centralized platform where students can access academic resources, explore department information, communicate with peers, and utilize AI-powered assistance—all within a single application.
 
 ---
 
 ## 🚀 Features
 
 ### 🔐 Authentication
-- Secure Sign Up and Sign In using Firebase Authentication
+- Username-based Sign Up and Sign In
+- Firebase Realtime Database integration
+- Persistent Login using SharedPreferences
 - User account management
+- Session management
+
+### 🛡️ Security & Reliability
+- Persistent Login (Auto Login)
+- Input Validation
+- Username Validation
+- Password Strength Validation
+- Phone Number Validation
+- Network Error Handling
+- Duplicate Username Prevention
+- Firebase Security Rules
+- Error Handling & Crash Prevention
 
 ### 📊 Student Dashboard
 - Modern and intuitive user interface
 - Quick access to academic and campus resources
 - Easy navigation across modules
+- Navigation Drawer support
 
 ### 🤖 AI Assistant
 - Integrated AI-powered assistant
-- Helps students with academic and campus-related queries
+- Academic guidance and assistance
+- Student support features
 
 ### 📚 Academic Resources
 - Subject-wise study materials
 - Notes and learning resources
 - Previous Year Questions (PYQs)
+- Department-specific information
 
-### 🏛 Department Information
+### 🏛️ Department Information
 - Computer Science & Engineering
 - Electronics & Communication Engineering
 - Electrical Engineering
@@ -35,55 +59,67 @@ NITA Campus is a modern Android application developed for students of **NIT Agar
 - Chemical Engineering
 - Production Engineering
 - Instrumentation Engineering
+- Basic Science Departments
 
 ### 🎯 Campus Information
-- Events and activities
-- Student clubs
+- Student activities
 - Faculty information
-- Scholarship details
+- Scholarships
 - Campus facilities
+- Academic updates
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
-- Kotlin
-- Android SDK
-- Firebase Authentication
+| Technology | Usage |
+|------------|--------|
+| Kotlin | Android Development |
+| Android SDK | Core Application Framework |
+| Firebase Realtime Database | Backend & Data Storage |
+| Gemini AI API | AI Assistant |
+| SharedPreferences | Session Management |
+| LiveData | Reactive UI Updates |
+| View Binding | UI Binding |
+| Material Design Components | Modern UI |
+| RecyclerView | Dynamic Lists |
+| MVVM Architecture | Project Structure |
+
+---
+
+## 🏗️ Architecture
+
+The project follows the **MVVM (Model-View-ViewModel)** architecture pattern.
+
+```text
+UI Layer
+    ↓
+ViewModel
+    ↓
+Repository
+    ↓
+Firebase Realtime Database
+```
+
+### Components
+- ViewModel
+- Repository Pattern
+- LiveData
 - Firebase Realtime Database
-- Gemini AI API
-- RecyclerView
+- SharedPreferences
 - View Binding
-- Material Design Components
 
 ---
 
-## 🏗 Project Structure
+## 🧪 Testing
 
-The application follows a modular Android architecture with separate components for:
+Implemented JUnit tests for:
 
-- Authentication
-- Dashboard Management
-- Academic Resources
-- Department Information
-- AI Assistant
-- User Profiles
-- Navigation Management
+- Phone Number Validation
+- Username Validation
+- Password Validation
 
----
-
-## 💡 Skills Demonstrated
-
-- Android Application Development
-- Kotlin Programming
-- Firebase Integration
-- Authentication Systems
-- Real-Time Database Management
-- API Integration
-- UI/UX Design
-- RecyclerView Implementation
-- Navigation Drawer Implementation
-- Problem Solving & Debugging
+All validation tests are passing successfully.
 
 ---
 
@@ -103,6 +139,24 @@ The application follows a modular Android architecture with separate components 
 
 ---
 
+## 💡 Skills Demonstrated
+
+- Android Application Development
+- Kotlin Programming
+- Firebase Integration
+- MVVM Architecture
+- Repository Pattern
+- Authentication Systems
+- Realtime Database Management
+- API Integration
+- UI/UX Design
+- RecyclerView Implementation
+- Navigation Drawer Implementation
+- Unit Testing
+- Problem Solving & Debugging
+
+---
+
 ## 🔮 Future Improvements
 
 - Push Notifications (FCM)
@@ -111,36 +165,43 @@ The application follows a modular Android architecture with separate components 
 - Timetable Management
 - Placement Preparation Module
 - Faculty-Student Communication Portal
+- Offline Support using Room Database
 - Cloud Firestore Migration
-- Offline Support
-- MVVM Architecture
-- Room Database Integration
+- Enhanced Analytics Dashboard
 
 ---
 
-## ⚙ Installation
+## ⚙️ Installation
 
-1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/pratikbhowal63-bot/NITA_Campus.git
 ```
 
-2. Open the project in Android Studio
+### 2. Open in Android Studio
 
-3. Add your own Firebase configuration file:
+Open the project using the latest version of Android Studio.
+
+### 3. Add Firebase Configuration
+
+Place your Firebase configuration file in:
 
 ```text
 app/google-services.json
 ```
 
-4. Sync Gradle dependencies
+### 4. Sync Gradle
 
-5. Build and run the application
+Allow Android Studio to download all dependencies.
+
+### 5. Build & Run
+
+Run the application on an Android device or emulator.
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Developer
 
 **Pratik Bhowal**  
 B.Tech, Computer Science & Engineering  
@@ -148,4 +209,6 @@ National Institute of Technology Agartala
 
 ---
 
-⭐ If you found this project useful, consider giving it a star.
+## ⭐ Support
+
+If you found this project useful, consider giving it a star on GitHub.
