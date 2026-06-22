@@ -14,16 +14,8 @@ class UserRepository {
         callback: (Boolean, String?) -> Unit
     ) {
 
-        val username = user.username
-
-        if (username.isNullOrEmpty()) {
-            callback(false, "Username cannot be empty")
-            return
-        }
-
-        database.child(username)
-            .get()
-            .addOnSuccessListener { snapshot ->
+        user.username?.let { database.child(it) }?.get()
+            ?.addOnSuccessListener { snapshot ->
 
                 if (snapshot.exists()) {
 
@@ -34,14 +26,12 @@ class UserRepository {
 
                 } else {
 
-                    database.child(username)
+                    database.child(user.username!!)
                         .setValue(user)
                         .addOnSuccessListener {
 
-                            callback(
-                                true,
-                                null
-                            )
+                            callback(true, null)
+
                         }
                         .addOnFailureListener {
 
@@ -52,7 +42,7 @@ class UserRepository {
                         }
                 }
             }
-            .addOnFailureListener {
+            ?.addOnFailureListener {
 
                 callback(
                     false,
@@ -65,48 +55,58 @@ class UserRepository {
         username: String,
         callback: (Users?, String?) -> Unit
     ) {
+        database.child(username).get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.exists()) {
+                    val user = snapshot.getValue(Users::class.java)
+                    callback(user, null)
+                } else {
+                    callback(null, "User not found")
+                }
+            }
+            .addOnFailureListener {
+                callback(null, it.message)
+            }
+    }
 
-        database.child(username)
-            .get()
+    fun login(
+        username: String,
+        password: String,
+        callback: (Boolean, String?) -> Unit
+    ) {
+
+        database.child(username).get()
             .addOnSuccessListener { snapshot ->
 
-                if (snapshot.exists()) {
-
-                    val user =
-                        snapshot.getValue(
-                            Users::class.java
-                        )
+                if (!snapshot.exists()) {
 
                     callback(
-                        user,
-                        null
+                        false,
+                        "Username doesn't exist"
                     )
+                    return@addOnSuccessListener
+                }
+
+                val user =
+                    snapshot.getValue(Users::class.java)
+
+                if (user?.password == password) {
+
+                    callback(true, null)
 
                 } else {
-
                     callback(
-                        null,
-                        "User not found"
+                        false,
+                        "Incorrect password"
                     )
                 }
             }
             .addOnFailureListener {
 
                 callback(
-                    null,
+                    false,
                     it.message
                 )
             }
-    }
-
-    fun updateLastLogin(
-        username: String
-    ) {
-
-        database.child(username)
-            .child("lastLogin")
-            .setValue(
-                System.currentTimeMillis()
-            )
     }
 }
