@@ -4,50 +4,28 @@ import com.example.nitacampus.model.Users
 import com.google.firebase.database.FirebaseDatabase
 
 class UserRepository {
+    private val database = FirebaseDatabase.getInstance()
+        .getReference("Users")
 
-    private val database =
-        FirebaseDatabase.getInstance()
-            .getReference("Users")
+    fun registerUser(user: Users, callback: (Boolean, String?) -> Unit) {
 
-    fun registerUser(
-        user: Users,
-        callback: (Boolean, String?) -> Unit
-    ) {
-
-        user.username?.let { database.child(it) }?.get()
-            ?.addOnSuccessListener { snapshot ->
+        user.username?.let { database.child(it) }?.get()?.addOnSuccessListener { snapshot ->
 
                 if (snapshot.exists()) {
-
-                    callback(
-                        false,
-                        "Username already taken"
-                    )
-
-                } else {
-
+                    callback(false, "Username already taken")
+                }
+                else {
                     database.child(user.username!!)
                         .setValue(user)
                         .addOnSuccessListener {
-
                             callback(true, null)
-
                         }
                         .addOnFailureListener {
-
-                            callback(
-                                false,
-                                it.message
-                            )
-                        }
+                            callback(false, it.message) }
                 }
             }
             ?.addOnFailureListener {
-
-                callback(
-                    false,
-                    it.message
-                )
+                callback(false, it.message)
             }
     }
 
