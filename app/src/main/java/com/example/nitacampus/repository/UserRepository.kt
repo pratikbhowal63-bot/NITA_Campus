@@ -51,29 +51,7 @@ class UserRepository {
             }
     }
 
-    fun getUser(
-        username: String,
-        callback: (Users?, String?) -> Unit
-    ) {
-        database.child(username).get()
-            .addOnSuccessListener { snapshot ->
-                if (snapshot.exists()) {
-                    val user = snapshot.getValue(Users::class.java)
-                    callback(user, null)
-                } else {
-                    callback(null, "User not found")
-                }
-            }
-            .addOnFailureListener {
-                callback(null, it.message)
-            }
-    }
-
-    fun login(
-        username: String,
-        password: String,
-        callback: (Boolean, String?) -> Unit
-    ) {
+    fun login(username: String, password: String, callback: (Boolean, String?) -> Unit) {
 
         database.child(username).get()
             .addOnSuccessListener { snapshot ->

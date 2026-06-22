@@ -32,7 +32,7 @@ import com.example.nitacampus.R
 import com.example.nitacampus.model.GamificationManager
 import com.example.nitacampus.ui.assistant.AiAssistantActivity
 import com.example.nitacampus.ui.auth.SignIn
-import com.example.nitacampus.ui.profile.profile
+import com.example.nitacampus.ui.profile.ProfileActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -74,7 +74,7 @@ class MainActivity2 : AppCompatActivity() {
         val userId = intent.getStringExtra("username") ?: intent.getStringExtra("userId") ?: ""
 
         headerView.setOnClickListener {
-            val intent = Intent(this, profile::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
             intent.putExtra("username", userId)
             startActivity(intent)
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -85,19 +85,19 @@ class MainActivity2 : AppCompatActivity() {
             when(item.itemId){
 
                 R.id.profile -> {
-                    val intent = Intent(this, profile::class.java)
+                    val intent = Intent(this, ProfileActivity::class.java)
                     intent.putExtra("username", userId)
                     startActivity(intent)
                 }
 
 
-                    R.id.nav_dark_mode -> {
+                R.id.nav_dark_mode -> {
 
-                        AppCompatDelegate.setDefaultNightMode(
-                            AppCompatDelegate.MODE_NIGHT_YES
-                        )
-                        true
-                    }
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_YES
+                    )
+                    true
+                }
 
 
                 R.id.admins -> {

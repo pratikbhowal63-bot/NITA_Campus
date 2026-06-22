@@ -9,12 +9,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.nitacampus.R
-import com.example.nitacampus.viewmodel.UserViewModel
+import com.example.nitacampus.viewmodel.ProfileViewModel
 
-class profile : AppCompatActivity() {
-
-    private lateinit var viewModel: UserViewModel
-
+class ProfileActivity : AppCompatActivity() {
+    private lateinit var viewModel: ProfileViewModel
     private lateinit var tvName: TextView
     private lateinit var tvRoll: TextView
     private lateinit var tvPoints: TextView
@@ -30,7 +28,7 @@ class profile : AppCompatActivity() {
         tvPoints = findViewById(R.id.Points)
         tvStreak = findViewById(R.id.Streak)
 
-        viewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
         viewModel.user.observe(this) { user ->
 
@@ -43,10 +41,7 @@ class profile : AppCompatActivity() {
             tvStreak.text = "${user.streak} days"
         }
 
-        val username =
-            intent.getStringExtra("username")
-                ?: intent.getStringExtra("userId")
-                ?: ""
+        val username = intent.getStringExtra("username") ?: intent.getStringExtra("userId") ?: ""
 
         Log.d("PROFILE", "Received username = $username")
 
@@ -55,7 +50,7 @@ class profile : AppCompatActivity() {
             tvName.text = "User Not Found"
 
         } else {
-            viewModel.loadUser(username)
+            viewModel.loadProfile(username)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(

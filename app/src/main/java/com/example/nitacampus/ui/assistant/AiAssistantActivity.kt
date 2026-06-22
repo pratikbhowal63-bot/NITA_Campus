@@ -8,63 +8,127 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nitacampus.BuildConfig
 import com.example.nitacampus.R
 import com.example.nitacampus.adapter.MessageAdapter
 import com.example.nitacampus.model.MessageModel
-import com.google.ai.client.generativeai.GenerativeModel
-import kotlinx.coroutines.launch
+import com.example.nitacampus.viewmodel.AiViewModel
 
 class AiAssistantActivity : AppCompatActivity() {
 
     private lateinit var eTextMessage: EditText
     private lateinit var btnSend: ImageButton
+    private lateinit var btnBack: ImageButton
     private lateinit var rvMessages: RecyclerView
     private lateinit var welcomeLayout: LinearLayout
+    private lateinit var tvHello: TextView
 
     private lateinit var adapter: MessageAdapter
+    private lateinit var viewModel: AiViewModel
+
     private val messageList = ArrayList<MessageModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ai_assistant)
 
+        initViews()
+        setupRecyclerView()
+        setupViewModel()
+        setupListeners()
+
+        android.util.Log.d(
+            "API_KEY_TEST",
+            BuildConfig.GEMINI_API_KEY
+        )
+    }
+
+    private fun initViews() {
+
         eTextMessage = findViewById(R.id.eTextMessage)
         btnSend = findViewById(R.id.btnSend)
+        btnBack = findViewById(R.id.btnBack)
         rvMessages = findViewById(R.id.rvMessages)
         welcomeLayout = findViewById(R.id.welcomeLayout)
+        tvHello = findViewById(R.id.tvHallo)
+
+        tvHello.text = "Hello 👋"
+    }
+
+    private fun setupRecyclerView() {
 
         adapter = MessageAdapter(messageList)
 
-        rvMessages.layoutManager = LinearLayoutManager(this)
-        rvMessages.adapter = adapter
-        rvMessages.itemAnimator = DefaultItemAnimator()
+        rvMessages.layoutManager =
+            LinearLayoutManager(this)
 
-        val generativeModel = GenerativeModel(
-            modelName = "gemini-2.5-flash",
-            apiKey = "AQ.Ab8RN6Iv-KSBmCr6BkulWE5u0W4FkQrSxzhDr84llzK3a6znBA"
-        )
+        rvMessages.adapter = adapter
+
+        rvMessages.itemAnimator =
+            DefaultItemAnimator()
+    }
+
+    private fun setupViewModel() {
+
+        viewModel =
+            ViewModelProvider(this)[AiViewModel::class.java]
+
+        viewModel.response.observe(this) { answer ->
+
+            if (messageList.isNotEmpty() &&
+                messageList.last().message == "NITA AI is typing..."
+            ) {
+
+                messageList.removeAt(
+                    messageList.size - 1
+                )
+
+                adapter.notifyItemRemoved(
+                    messageList.size
+                )
+            }
+
+            messageList.add(
+                MessageModel(
+                    answer,
+                    false
+                )
+            )
+
+            adapter.notifyItemInserted(
+                messageList.size - 1
+            )
+
+            scrollToBottom()
+
+            btnSend.isEnabled = true
+        }
+    }
+
+    private fun setupListeners() {
 
         btnSend.setOnClickListener {
 
-            val question = eTextMessage.text.toString().trim()
+            val question =
+                eTextMessage.text.toString().trim()
 
             if (question.isEmpty()) {
+
                 Toast.makeText(
                     this,
                     "Please enter a question",
                     Toast.LENGTH_SHORT
                 ).show()
+
                 return@setOnClickListener
             }
 
-            // Hide welcome screen after first message
             welcomeLayout.visibility = View.GONE
 
-            // Add user message
             messageList.add(
                 MessageModel(
                     question,
@@ -72,106 +136,41 @@ class AiAssistantActivity : AppCompatActivity() {
                 )
             )
 
-            adapter.notifyItemInserted(messageList.size - 1)
-
-            rvMessages.smoothScrollToPosition(
+            adapter.notifyItemInserted(
                 messageList.size - 1
             )
 
+            scrollToBottom()
+
             eTextMessage.text.clear()
 
-            lifecycleScope.launch {
+            btnSend.isEnabled = false
 
-                try {
+            messageList.add(
+                MessageModel(
+                    "NITA AI is typing...",
+                    false
+                )
+            )
 
-                    btnSend.isEnabled = false
+            adapter.notifyItemInserted(
+                messageList.size - 1
+            )
 
-                    // Typing indicator
-                    val typingMessage = MessageModel(
-                        "NITA AI is typing...",
-                        false
-                    )
+            scrollToBottom()
 
-                    messageList.add(typingMessage)
-
-                    adapter.notifyItemInserted(
-                        messageList.size - 1
-                    )
-
-                    rvMessages.smoothScrollToPosition(
-                        messageList.size - 1
-                    )
-
-                    // Gemini Response
-                    val response =
-                        generativeModel.generateContent(question)
-
-                    val answer =
-                        response.text ?: "No response from AI"
-
-                    // Remove typing message
-                    messageList.remove(typingMessage)
-
-                    adapter.notifyDataSetChanged()
-
-                    // Add AI response
-                    messageList.add(
-                        MessageModel(
-                            answer,
-                            false
-                        )
-                    )
-
-                    adapter.notifyItemInserted(
-                        messageList.size - 1
-                    )
-
-                    rvMessages.smoothScrollToPosition(
-                        messageList.size - 1
-                    )
-
-                } catch (e: Exception) {
-
-                    Toast.makeText(
-                        this@AiAssistantActivity,
-                        e.message ?: "Unknown Error",
-                        Toast.LENGTH_LONG
-                    ).show()
-
-                } finally {
-
-                    btnSend.isEnabled = true
-                }
-            }
+            viewModel.askQuestion(question)
         }
 
-        val tvHello = findViewById<TextView>(R.id.tvHallo)
-
-        tvHello.text = "Hello 👋"
-//
-//        val userId = intent.getStringExtra("userId") ?: ""
-//
-//        if (userId.isNotEmpty()) {
-//
-//            val databaseReference = FirebaseDatabase.getInstance().getReference("Users")
-//
-//            databaseReference.child(userId).get()
-//                .addOnSuccessListener { snapshot ->
-//
-//                    val name = snapshot.child("name")
-//                        .getValue(String::class.java)
-//
-//                    tvHello.text = "Hello ${name ?: "User"} 👋"
-//                }
-//                .addOnFailureListener {
-//
-//                    tvHello.text = "Hello"
-//                }
-//        }
-
-        val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun scrollToBottom() {
+
+        rvMessages.smoothScrollToPosition(
+            messageList.size - 1
+        )
     }
 }

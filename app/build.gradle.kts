@@ -1,7 +1,17 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
 }
+
+val localProperties = Properties()
+
+localProperties.load(
+    rootProject.file("local.properties").inputStream()
+)
+
+val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY") ?: project.findProperty("GEMINI_API_KEY")?.toString() ?: ""
 
 android {
     namespace = "com.example.nitacampus"
@@ -9,6 +19,10 @@ android {
         version = release(36) {
             minorApiLevel = 1
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     defaultConfig {
@@ -19,6 +33,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "GEMINI_API_KEY",
+            "\"$geminiApiKey\""
+        )
     }
 
     buildTypes {
@@ -44,9 +64,11 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     implementation("com.github.Dimezis:BlurView:version-2.0.4")
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("com.google.android.material:material:1.12.0")
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
